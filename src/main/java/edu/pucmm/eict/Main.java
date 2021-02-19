@@ -19,7 +19,6 @@ public class Main {
         Javalin app = Javalin.create( config -> {
             //set configs
             config.addStaticFiles("/publico");
-
         });
         app.start(7000);
 /*
@@ -35,21 +34,21 @@ Crear una aplicación Web que cumpla los siguientes criterios:
             if (ctx.sessionAttribute("user")== null && ctx.sessionAttribute("pass")==null){
                 ctx.redirect("/login.html");
             }
-            else ctx.redirect("/autenticado.html");
         });
 
-        app.get("/login",ctx -> {
-
+        app.get("/",ctx -> {
+            ctx.redirect("/aut.html");
         });
 
         app.post("/autentificar", ctx -> {
-            //ctx.sessionAttribute("tt","s");
             String usuario = ctx.formParam("user");
             String pass = ctx.formParam("pass");
-            ctx.sessionAttribute("user", usuario);
-            ctx.sessionAttribute("pass", pass);
+            System.out.println("ndjkdjchjdbchbdchbfcd");
 
-            if (usuario!=null && pass!=null) {
+            if (!usuario.equalsIgnoreCase("") && !pass.equalsIgnoreCase("")) {
+                System.out.println("cvdv");
+              ctx.sessionAttribute("user", usuario);
+              ctx.sessionAttribute("pass", pass);
                 ctx.redirect("/");
             }
 
